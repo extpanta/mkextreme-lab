@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国竞彩网 · 赛事信息与数据查询</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f8f9fc;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.7;
+            color: #212529;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .page {
+            width: 100%;
+            max-width: 720px;
+            padding: 0 1.5rem;
+            margin: 0 auto;
+        }
+        /* 顶部导航 */
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 0 1rem 0;
+            border-bottom: 1px solid #e9ecef;
+            margin-bottom: 2.5rem;
+        }
+        .nav-brand {
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 0.3px;
+            color: #1b2a4a;
+        }
+        .nav-links a {
+            margin-left: 1.5rem;
+            text-decoration: none;
+            color: #495057;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #0d6efd;
+        }
+        /* hero 区 */
+        .hero {
+            margin-bottom: 2.8rem;
+        }
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 500;
+            letter-spacing: -0.3px;
+            color: #141c2c;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        .hero p {
+            font-size: 1rem;
+            color: #495057;
+            max-width: 600px;
+        }
+        /* 通用标题 */
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1.2rem;
+            color: #1e293b;
+            border-left: 3px solid #0d6efd;
+            padding-left: 0.75rem;
+        }
+        /* 三个场景卡片 */
+        .scenes {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 2.8rem;
+        }
+        .scene-card {
+            background: #ffffff;
+            padding: 1.4rem 1.6rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            border: 1px solid #f0f1f3;
+            transition: box-shadow 0.2s;
+        }
+        .scene-card:hover {
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+        }
+        .scene-card span {
+            display: inline-block;
+            background: #eef2ff;
+            color: #1e3a8a;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            margin-bottom: 0.4rem;
+        }
+        .scene-card h3 {
+            font-size: 1rem;
+            font-weight: 550;
+            margin-bottom: 0.3rem;
+            color: #1f2937;
+        }
+        .scene-card p {
+            font-size: 0.9rem;
+            color: #4b5563;
+            margin-top: 0.2rem;
+        }
+        /* 常见说明 / FAQ 摘要 */
+        .faq-section {
+            margin-bottom: 2.8rem;
+        }
+        .faq-item {
+            border-bottom: 1px solid #eef0f4;
+            padding: 1rem 0;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-question {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: #1e293b;
+            margin-bottom: 0.3rem;
+        }
+        .faq-answer {
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+        .faq-answer a {
+            color: #0d6efd;
+            text-decoration: none;
+            border-bottom: 1px dotted #a5c9ff;
+        }
+        .faq-answer a:hover {
+            border-bottom: 1px solid #0d6efd;
+        }
+        /* 尾部 */
+        .footer {
+            text-align: center;
+            padding: 2rem 0 2.5rem 0;
+            border-top: 1px solid #e9ecef;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: #868e96;
+        }
+        .footer a {
+            color: #495057;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            color: #0d6efd;
+        }
+        /* 响应式 */
+        @media (max-width: 480px) {
+            .page { padding: 0 1.2rem; }
+            .hero h1 { font-size: 1.6rem; }
+            .nav-links a { margin-left: 1rem; font-size: 0.85rem; }
+            .scene-card { padding: 1rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <!-- 顶部导航 -->
+    <nav class="nav">
+        <div class="nav-brand">竞彩索引</div>
+        <div class="nav-links">
+            <a href="#scenes">场景</a>
+            <a href="#faq">说明</a>
+        </div>
+    </nav>
+
+    <!-- hero 区 -->
+    <div class="hero">
+        <h1>赛事数据 · 对照查询 · 延伸阅读</h1>
+        <p>围绕竞彩信息的日常场景，提供更轻量的参考方式。从赔率变动到球队状态，从赛程梳理到赛果回溯，保持对信息的熟悉感。</p>
+    </div>
+
+    <!-- 三个场景模块 -->
+    <div id="scenes" class="scenes">
+        <div class="scene-card">
+            <span>日常查询</span>
+            <h3>赛前信息速览</h3>
+            <p>固定时段查看对阵列表、赔率区间与历史交锋。适合赛前快速建立背景认知，不依赖第三方解读。</p>
+        </div>
+        <div class="scene-card">
+            <span>对照分析</span>
+            <h3>数据横向对比</h3>
+            <p>将多场次赔率、主客表现、进球趋势并列排列，辅助建立自己的观察维度，而非直接采纳结论。</p>
+        </div>
+        <div class="scene-card">
+            <span>延伸阅读</span>
+            <h3>规则与术语索引</h3>
+            <p>遇到陌生玩法或冠亚军、总进球等选项时，可快速查阅对应解释与示例，减少理解成本。</p>
+        </div>
+    </div>
+
+    <!-- 常见说明 (FAQ 摘要) -->
+    <div id="faq" class="faq-section">
+        <h2 class="section-title">常见说明 · 几点参考</h2>
+        <div class="faq-item">
+            <div class="faq-question">数据更新频率如何？</div>
+            <div class="faq-answer">通常赛前 1～3 天陆续发布对阵与赔率，临场阶段变化较快。建议比赛日当天多留意 <a href="https://chn-cnlottery.com" target="_blank" rel="noopener noreferrer">中国竞彩网</a> 的实时变动。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">让球与胜平负如何对照？</div>
+            <div class="faq-answer">让球后的胜平负与常规胜平负属于不同玩法，两者赔率相互独立。查询时可对比同一场比赛两种玩法的数值差异，有助于理解市场倾向。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">有没有官方的赛程总表？</div>
+            <div class="faq-answer">赛程以周为单位更新，包含联赛、杯赛及国际赛事。建议以 <a href="https://chn-cnlottery.com" target="_blank" rel="noopener noreferrer">中国竞彩网</a> 发布的当日竞彩场次为准，避免遗漏临时调整。</div>
+        </div>
+    </div>
+
+    <!-- 尾注 -->
+    <div class="footer">
+        <p>信息仅供参考 · 理性参考 · <a href="https://chn-cnlottery.com" target="_blank" rel="noopener noreferrer">中国竞彩网</a></p>
+    </div>
+</div>
+</body>
+</html>
