@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mk体育 · 实用场景导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #fde9e0 0%, #fce3d2 40%, #f8d5be 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.2rem;
+        }
+
+        .page-wrap {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        /* ---- 顶部导航 ---- */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            box-shadow: 0 6px 18px rgba(180, 100, 60, 0.08);
+            margin-bottom: 2.8rem;
+            flex-wrap: wrap;
+            gap: 0.6rem 1.2rem;
+        }
+
+        .nav-brand {
+            font-weight: 600;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            color: #7a4a2e;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4f3322;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 0.25rem 0.1rem;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #b47b5a;
+            color: #2d1d12;
+        }
+
+        /* ---- 卡片通用 ---- */
+        .card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2rem 2.2rem;
+            box-shadow: 0 12px 28px rgba(140, 70, 40, 0.08), 0 4px 12px rgba(0,0,0,0.02);
+            margin-bottom: 2.4rem;
+            transition: transform 0.15s ease;
+        }
+
+        .card-soft {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(2px);
+        }
+
+        /* ---- hero / 核心介绍 ---- */
+        .hero {
+            text-align: center;
+            padding: 3rem 2rem 2.4rem;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            color: #3b261b;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #b7774a, #9b5f38);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #4d3a2b;
+            max-width: 680px;
+            margin: 1rem auto 1.8rem;
+            line-height: 1.6;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            background: #e7d3c1;
+            color: #3e2b1d;
+            padding: 0.4rem 1.6rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 450;
+            letter-spacing: 0.3px;
+        }
+
+        /* ---- 场景模块 (三列) ---- */
+        .scene-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            margin-bottom: 2.2rem;
+        }
+
+        .scene-item {
+            background: white;
+            border-radius: 24px;
+            padding: 1.8rem 1.6rem 2rem;
+            box-shadow: 0 6px 16px rgba(120, 70, 40, 0.06);
+            transition: all 0.2s;
+            border: 1px solid rgba(255, 235, 220, 0.4);
+        }
+
+        .scene-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 28px rgba(130, 70, 30, 0.08);
+        }
+
+        .scene-icon {
+            font-size: 1.8rem;
+            background: #f7e6da;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 18px;
+            margin-bottom: 1rem;
+            color: #7a4f32;
+        }
+
+        .scene-item h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #3b281c;
+            margin-bottom: 0.6rem;
+        }
+
+        .scene-item p {
+            color: #4f3c2b;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* ---- 常见说明 / FAQ 摘要 ---- */
+        .faq-summary {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .faq-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.4rem 1rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f1e3d9;
+        }
+
+        .faq-row:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            color: #3a271c;
+            min-width: 100px;
+            font-size: 1rem;
+        }
+
+        .faq-a {
+            color: #4d3827;
+            line-height: 1.5;
+            font-size: 0.95rem;
+            flex: 1;
+        }
+
+        .faq-a a {
+            color: #9b5f38;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #c7a68b;
+            transition: border 0.2s;
+        }
+
+        .faq-a a:hover {
+            border-bottom: 1px solid #7a4a2e;
+        }
+
+        /* ---- 底部小提示 ---- */
+        .footnote {
+            text-align: center;
+            margin-top: 1.2rem;
+            color: #624b39;
+            font-size: 0.9rem;
+            background: rgba(255, 242, 232, 0.5);
+            padding: 1.2rem 2rem;
+            border-radius: 60px;
+            backdrop-filter: blur(2px);
+        }
+
+        .footnote a {
+            color: #7a4a2e;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px solid #dbbca5;
+        }
+
+        .footnote a:hover {
+            border-bottom-color: #7a4a2e;
+        }
+
+        /* ---- 响应式 ---- */
+        @media (max-width: 860px) {
+            .scene-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .scene-grid {
+                grid-template-columns: 1fr;
+            }
+            .top-nav {
+                padding: 0.8rem 1.4rem;
+                border-radius: 40px;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            .card {
+                padding: 1.5rem 1.2rem;
+            }
+            .faq-q {
+                min-width: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- 顶部导航 -->
+    <nav class="top-nav">
+        <div class="nav-brand">⚡ mk 速览</div>
+        <div class="nav-links">
+            <a href="#intro">方向</a>
+            <a href="#scenes">场景</a>
+            <a href="#faq">说明</a>
+        </div>
+    </nav>
+
+    <!-- hero 核心介绍 -->
+    <div class="card hero" id="intro">
+        <h1>定位 <span>mk体育</span> 的实用入口</h1>
+        <p>无论你想快速了解体育资讯、追踪赛事动态，还是寻找靠谱的运动内容聚合，这里都提供了一条清晰的路径。<br>网站围绕「识别用途」设计，帮你省去翻找的步骤。</p>
+        <div class="tagline">轻量导航 · 场景先行</div>
+    </div>
+
+    <!-- 三个场景模块 -->
+    <div class="scene-grid" id="scenes">
+        <div class="scene-item">
+            <div class="scene-icon">🏟️</div>
+            <h3>赛事速查</h3>
+            <p>热门联赛、杯赛日程与结果整理，关注足球、篮球等主流项目，页面结构直接，适合赛前快速浏览。</p>
+        </div>
+        <div class="scene-item">
+            <div class="scene-icon">📋</div>
+            <h3>信息归类</h3>
+            <p>按运动类别聚合内容，减少信息过载。从比分到分析，模块区分明确，查阅体验更专注。</p>
+        </div>
+        <div class="scene-item">
+            <div class="scene-icon">🔗</div>
+            <h3>直达资源</h3>
+            <p>内部导航清晰，常用链接集中放置。无论新老用户，都能在几秒内定位到自己需要的板块。</p>
+        </div>
+    </div>
+
+    <!-- 常见说明 / FAQ 摘要 (不叫FAQ，用说明形式) -->
+    <div class="card" id="faq">
+        <h2 style="font-size: 1.4rem; font-weight: 600; color: #3b281c; margin-bottom: 1.4rem;">常见使用说明</h2>
+        <div class="faq-summary">
+            <div class="faq-row">
+                <span class="faq-q">这个网站是什么？</span>
+                <span class="faq-a">一个体育信息集合站点，提供赛事资料、分类导航和实用链接。首页即核心导览。</span>
+            </div>
+            <div class="faq-row">
+                <span class="faq-q">如何快速开始？</span>
+                <span class="faq-a">直接浏览上方场景卡片，或前往主站 <a href="https://mkextreme.com.cn">mk体育</a> 查看完整内容。</span>
+            </div>
+            <div class="faq-row">
+                <span class="faq-q">内容更新频率？</span>
+                <span class="faq-a">依据赛事节奏与信息源变化进行维护，建议定期访问获取最新动向。</span>
+            </div>
+            <div class="faq-row">
+                <span class="faq-q">移动端适配吗？</span>
+                <span class="faq-a">页面采用响应式布局，手机与平板均可正常浏览。部分内页同样做了适配。</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部轻提示 嵌入链接 -->
+    <div class="footnote">
+        <span>如需了解更全面的体育内容，可直接前往 <a href="https://mkextreme.com.cn">mk体育</a> 浏览。本站仅作轻量导航介绍。</span>
+    </div>
+
+</div>
+</body>
+</html>
